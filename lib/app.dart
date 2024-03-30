@@ -1,3 +1,4 @@
+import 'package:chromaleap/Feature/Ground/ground.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -12,7 +13,7 @@ class ChromaLeap extends FlameGame with TapCallbacks {
       : super(
           camera: CameraComponent.withFixedResolution(
             width: 600,
-            height: 600,
+            height: 1000,
           ),
         );
 
@@ -23,12 +24,13 @@ class ChromaLeap extends FlameGame with TapCallbacks {
   @override
   void onMount() {
     debugMode = true;
-
+    world.add(Ground(position: Vector2(0, 400)));
     world.add(player = Player());
 
     super.onMount();
   }
 
+  //* camera
   @override
   void update(double dt) {
     final cameraY = camera.viewfinder.position.y;
@@ -40,6 +42,7 @@ class ChromaLeap extends FlameGame with TapCallbacks {
     super.update(dt);
   }
 
+  //* Jump Method
   @override
   void onTapDown(TapDownEvent event) {
     print('onTapDown()');
