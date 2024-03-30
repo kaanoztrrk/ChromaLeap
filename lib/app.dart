@@ -21,7 +21,7 @@ class ChromaLeap extends FlameGame with TapCallbacks {
       ]})
       : super(
             camera:
-                CameraComponent.withFixedResolution(width: 600, height: 1500));
+                CameraComponent.withFixedResolution(width: 600, height: 999));
 
   @override
   // Game Background Color
@@ -31,7 +31,7 @@ class ChromaLeap extends FlameGame with TapCallbacks {
   void onMount() {
     //* Debug Mode
     // debugMode = true;
-    world.add(Ground(position: Vector2(0, 500)));
+    world.add(Ground(position: Vector2(0, 400)));
     world.add(player = Player(position: Vector2(0, 250)));
     generateGameComponents();
     super.onMount();
