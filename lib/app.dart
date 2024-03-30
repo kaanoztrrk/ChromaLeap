@@ -8,15 +8,36 @@ import 'Model/Player/player.dart';
 class ChromaLeap extends FlameGame with TapCallbacks {
   late Player player;
 
+  ChromaLeap()
+      : super(
+          camera: CameraComponent.withFixedResolution(
+            width: 600,
+            height: 600,
+          ),
+        );
+
   @override
   // Game Background Color
   Color backgroundColor() => const Color(0xff222222);
 
   @override
   void onMount() {
-    // TODO: implement onMount
+    debugMode = true;
+
+    world.add(player = Player());
+
     super.onMount();
-    add(player = Player());
+  }
+
+  @override
+  void update(double dt) {
+    final cameraY = camera.viewfinder.position.y;
+    final playerY = player.position.y;
+
+    if (playerY < cameraY) {
+      camera.viewfinder.position = Vector2(0, playerY);
+    }
+    super.update(dt);
   }
 
   @override

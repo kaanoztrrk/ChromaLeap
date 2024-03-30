@@ -6,7 +6,7 @@ class Player extends PositionComponent {
     this.playerRadius = 15,
   });
 
-  final _velocity = Vector2(0, 30.0);
+  final _velocity = Vector2.zero();
   final _gravity = 980.0;
   final _jumpSpeed = 350.0;
 
@@ -14,7 +14,7 @@ class Player extends PositionComponent {
 
   @override
   void onMount() {
-    position = Vector2(200, 100);
+    position = Vector2.zero();
     size = Vector2.all(playerRadius * 2);
     anchor = Anchor.center;
     super.onMount();
