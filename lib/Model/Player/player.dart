@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class Player extends PositionComponent with HasGameRef<ChromaLeap> {
   Player({
+    required super.position,
     this.playerRadius = 15,
   });
 
@@ -16,7 +17,7 @@ class Player extends PositionComponent with HasGameRef<ChromaLeap> {
 
   @override
   void onMount() {
-    position = Vector2.zero();
+    position = position;
     size = Vector2.all(playerRadius * 2);
     anchor = Anchor.center;
     super.onMount();

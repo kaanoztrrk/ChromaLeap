@@ -1,4 +1,5 @@
 import 'package:chromaleap/Feature/Ground/ground.dart';
+import 'package:chromaleap/Feature/Rotater/circular_rotater.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -9,13 +10,18 @@ import 'Model/Player/player.dart';
 class ChromaLeap extends FlameGame with TapCallbacks {
   late Player player;
 
-  ChromaLeap()
+  final List<Color> gameColors;
+
+  ChromaLeap(
+      {this.gameColors = const [
+        Colors.redAccent,
+        Colors.greenAccent,
+        Colors.blueAccent,
+        Colors.yellowAccent,
+      ]})
       : super(
-          camera: CameraComponent.withFixedResolution(
-            width: 600,
-            height: 1000,
-          ),
-        );
+            camera:
+                CameraComponent.withFixedResolution(width: 600, height: 1500));
 
   @override
   // Game Background Color
@@ -23,11 +29,17 @@ class ChromaLeap extends FlameGame with TapCallbacks {
 
   @override
   void onMount() {
-    debugMode = true;
-    world.add(Ground(position: Vector2(0, 400)));
-    world.add(player = Player());
-
+    //* Debug Mode
+    // debugMode = true;
+    world.add(Ground(position: Vector2(0, 500)));
+    world.add(player = Player(position: Vector2(0, 250)));
+    generateGameComponents();
     super.onMount();
+  }
+
+  void generateGameComponents() {
+    world.add(
+        CircularRotator(position: Vector2(0, 100), size: Vector2(200, 200)));
   }
 
   //* camera
